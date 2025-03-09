@@ -23,8 +23,8 @@
           {
             "group": "Tutorial",
             "pages": [
-              "/tutorial/users",
-              "/tutorial/developers"
+              "tutorial/users",
+              "tutorial/developers"
             ]
           }
         ]
