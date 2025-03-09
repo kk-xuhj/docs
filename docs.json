@@ -1,7 +1,7 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
+  "$schema": "https://github.com/kk-xuhj/docs/blob/main/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "BenchFlow",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -17,28 +17,23 @@
             "group": "Get Started",
             "pages": [
               "introduction",
-              "quickstart",
-              "development"
+              "quickstart"
             ]
           },
           {
-            "group": "Essentials",
+            "group": "Tutorial",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "tutorial/users",
+              "tutorial/developers",
             ]
           }
         ]
       },
       {
-        "tab": "API Reference",
+        "tab": "SDK Reference",
         "groups": [
           {
-            "group": "API Documentation",
+            "group": "SDK Documentation",
             "pages": [
               "api-reference/introduction"
             ]
@@ -58,20 +53,10 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
           "anchor": "Community",
           "href": "https://mintlify.com/community",
           "icon": "slack"
         },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
       ]
     }
   },
@@ -83,20 +68,18 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:xiangyi@benchflow.ai"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Benchmark Hub",
+      "href": "https://staging.benchflow.ai/dashboard/benchmarks"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "github": "https://github.com/benchflow-ai/benchflow",
     }
   }
 }
