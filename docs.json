@@ -24,7 +24,7 @@
             "group": "Tutorial",
             "pages": [
               "tutorial/users",
-              "tutorial/developers",
+              "tutorial/developers"
             ]
           }
         ]
@@ -56,7 +56,7 @@
           "anchor": "Community",
           "href": "https://mintlify.com/community",
           "icon": "slack"
-        },
+        }
       ]
     }
   },
@@ -79,7 +79,7 @@
   },
   "footer": {
     "socials": {
-      "github": "https://github.com/benchflow-ai/benchflow",
+      "github": "https://github.com/benchflow-ai/benchflow"
     }
   }
 }
