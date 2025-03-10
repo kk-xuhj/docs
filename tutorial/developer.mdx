@@ -49,7 +49,14 @@ You need to implement two methods.&#x20;
 class MMLUClient(BenchClient):
     def __init__(self, intelligence_url):
         super().__init__(intelligence_url)
-    def prepare_input(self, env: Dict[str, Any]) -> Dict[str, Any]:
+```
+
+<Info>
+  The `intelligence_url` is an address used for communicating with the agent. Your evaluation script should provide an argument to accept this URL. We will explain the detail in subsequent steps.
+</Info>
+
+```python
+def prepare_input(self, env: Dict[str, Any]) -> Dict[str, Any]:
         single_question = env["each"]
         cot_examples_dict = env["input_text"]
         category = single_question["category"]
@@ -61,12 +68,26 @@ class MMLUClient(BenchClient):
             prompt += format_example(each["question"], each["options"], each["cot_content"])
         input_text = format_example(question, options)
         return {"prompt": prompt, "input_text": input_text, "entry": single_question, "cot_examples_dict": cot_examples_dict}
-    
+```
+
+The basic benchmark provided by mmlu-pro consists of four dictionaries, which are as follows:
+
+\{
+`  "prompt"`: prompt,
+`  "input_text"`: input\_text,
+`  "entry"`: single\_question,
+`  "cot_examples_dict"`: cot\_examples\_dict
+`}`
+
+<Note>
+  Benchmark developers should clearly document in the README (model card) the keys and their meanings of the input data provided. This is essential for intelligence developers to benchmark.
+</Note>
+
+```python
     def parse_response(self, raw_response: str) -> Dict[str, Any]:
-        pred = extract_answer(raw_response)
+        # extract_answer() is provided by MMLU-Pro developer
+        pred = extract_answer(raw_response) 
         return {"action": pred, "response": raw_response}
 ```
 
-<Info>
-
-</Info>
+### Use get\_response to receive response from intelligence
