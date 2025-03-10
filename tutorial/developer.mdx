@@ -31,8 +31,42 @@ We provide benchmark developers with two interfaces to interact with intelligenc
 
 ## Make your benchmark a client
 
+We go through the entire benchmark onboarding process by integrating **MMLU-Pro** into BenchFlow as an example.
+
+### Import BenchClient
+
+```python
+from benchflow import BenchClient
+```
+
 ### Extend BenchClient
 
 You need to implement two methods.&#x20;
-`parse_input` defines the type of data provided by the benchmark, and it returns a dictionary.
-`parse_response`
+`parse_input` defines the structure of data provided by the benchmark, and it returns a dictionary.
+`parse_response`is used to parse the raw response from the agent into a structured dictionary.
+
+```python
+class MMLUClient(BenchClient):
+    def __init__(self, intelligence_url):
+        super().__init__(intelligence_url)
+    def prepare_input(self, env: Dict[str, Any]) -> Dict[str, Any]:
+        single_question = env["each"]
+        cot_examples_dict = env["input_text"]
+        category = single_question["category"]
+        cot_examples = cot_examples_dict[category]
+        question = single_question["question"]
+        options = single_question["options"]
+        prompt = "The following are multiple choice questions (with answers) about {}. Think step by step and then output the answer in the format of \"The answer is (X)\" at the end.\n\n".format(category)
+        for each in cot_examples:
+            prompt += format_example(each["question"], each["options"], each["cot_content"])
+        input_text = format_example(question, options)
+        return {"prompt": prompt, "input_text": input_text, "entry": single_question, "cot_examples_dict": cot_examples_dict}
+    
+    def parse_response(self, raw_response: str) -> Dict[str, Any]:
+        pred = extract_answer(raw_response)
+        return {"action": pred, "response": raw_response}
+```
+
+<Info>
+
+</Info>
