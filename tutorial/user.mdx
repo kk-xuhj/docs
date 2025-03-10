@@ -31,7 +31,9 @@ Benchflow use the api provided by your intelligence to help you rapidly build a 
     from benchflow import BaseAgent
     ```
 
-    > Although this interface is named BaseAgent, **you don't need to design an AI agent**; simply implementing the call\_api method is sufficient. We call it an "agent" because it serves as an agent to invoke your API.
+    <Note>
+      Although this interface is named BaseAgent, **you don’t need to design an AI agent**; simply implementing the call\_api method is sufficient. We call it an “agent” because it serves as an agent to invoke your API.
+    </Note>
   </Accordion>
 
   <Accordion title="Check the benchmark card" defaultOpen={false}>
@@ -91,14 +93,14 @@ Benchflow use the api provided by your intelligence to help you rapidly build a 
   <Accordion title="Benchmark your intelligence" defaultOpen={false}>
     Load your benchmark from benchmark hub.
 
-    <Note>
-      The naming format for benchmarks is **`organization_name/benchmark_name`**
-    </Note>
-
     ```python
     from benchflow import load_benchmark
     bench = load_benchmark("benchflow/webarena", bf_token=os.getenv(BF_TOKEN))
     ```
+
+    <Note>
+      The naming format for benchmarks is **`organization_name/benchmark_name`**
+    </Note>
 
     Import your api caller (agent).
 
