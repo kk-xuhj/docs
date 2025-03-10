@@ -2,3 +2,76 @@
 title: "User"
 description: "Detail steps for benchmark users."
 ---
+
+## Benchmark your intelligence
+
+**Intelligence** is any AI-related product (e.g.LLM models, AI agents ...).&#x20;
+
+Benchflow use the api provided by your intelligence to help you rapidly build a benchmark pipeline without any benchmark setup.
+
+## Install benchflow sdk
+
+<CodeGroup>
+  ```javascript uv
+  uv add benchflow
+  ```
+
+  ```
+  pip install benchflow
+  ```
+
+  ```
+  pip install benchflow
+  ```
+
+  ```
+  pip install benchflow
+  ```
+</CodeGroup>
+
+## Implement the interface for api
+
+<AccordionGroup>
+  <Accordion title="Import the interface for api" defaultOpen={false}>
+    You need to implement the **BaseAgen**t interface provided by benchflow.
+
+    ```python
+    from benchflow import BaseAgent
+    ```
+
+    > Although this interface is named BaseAgent, **you don't need to design an AI agent**; simply implementing the call\_api method is sufficient. We call it an "agent" because it serves as an agent to invoke your API.
+  </Accordion>
+
+  <Accordion title="Check the benchmark card" defaultOpen={false}>
+    Go to the Benchmark Hub and read **model card** about the benchmarks you want to test on, especially the **task\_step\_input** provided by the benchmark developer.
+
+    <Check>
+      The **`task_step_input`** is a dictionary provided as input to the **`call_api`** method that contains all the benchmark dataset information. You will need to use it to test your intelligence.
+    </Check>
+  </Accordion>
+
+  <Accordion title="Implement your call_api function" defaultOpen={false}>
+    Here is a basic example about testing the OpenAI on a Q\&A benchmark. Suppose the model card specifies that the format of `task_step_inputs` is `{"question": "question text"}`.
+
+    ```python
+    from openai import OpenAI
+    class YourAgent(BaseAgent):
+      def call_api(self, task_step_inputs: Dict[str, Any]) -> str:
+          messages = [
+            {"role": "user", "content": task_step_inputs['question']}
+          ]
+          client = OpenAI(
+             api_key=os.getenv("OPENAI_API_KEY"),
+          )
+          response = client.chat.completions.create(
+             messages=messages,
+             model="gpt-4o",
+             temperature=0.9,
+          )
+          content = response.choices[0].message.content
+          return content
+    ```
+  </Accordion>
+</AccordionGroup>
+
+##

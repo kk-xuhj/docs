@@ -112,11 +112,11 @@ BenchFlow aims to be the bridge between benchmark users and benchmark developers
   </Step>
 
   <Step title="Containerize your benchmark">
-    Package your benchmark as an image and provide an entrypoint to run the benchmark.&#x20;
+    Package your benchmark as an image and provide an entry point to run the benchmark.&#x20;
 
-    <Tip>
-      If your benchmark accepts multiple arguments, don't worry—we'll explain in the next step how to pass the necessary parameters.
-    </Tip>
+    <Check>
+      Please configure your Docker image to target the Linux platform. We plan to support additional platforms in future releases.
+    </Check>
   </Step>
 
   <Step title="Extend BaseBench to Run Your Benchmarks">
