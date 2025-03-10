@@ -28,3 +28,11 @@ We provide benchmark developers with two interfaces to interact with intelligenc
   pip install benchflow
   ```
 </CodeGroup>
+
+## Make your benchmark a client
+
+### Extend BenchClient
+
+You need to implement two methods.&#x20;
+`parse_input` defines the type of data provided by the benchmark, and it returns a dictionary.
+`parse_response`
